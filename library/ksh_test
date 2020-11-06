@@ -1,4 +1,4 @@
-#!/usr/bin/ksh
+#!/bin/ksh
 #
 # This script accepts two inputs
 # 1. name 
@@ -7,7 +7,11 @@
 
 changed="false"
 
-source $1
+firstarg=$1
+invars=`cat $1 | sed 's/\s\+\([a-zA-Z_]\+=\)/\n\1/g' > $1.mod`
+modvarfile=$1.mod
+condition=`grep ^condition $modvarfile | sed 's/^.*=//g'`
+name=`grep ^name $modvarfile | sed 's/^.*=//g'`
 
 display="User $name has the status of $condition"
 
@@ -23,3 +27,4 @@ fi
 printf '{"changed": %s, "msg": "%s"}' "$changed" "$display"
 
 exit 0
+

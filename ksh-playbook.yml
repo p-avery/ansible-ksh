@@ -1,0 +1,13 @@
+---
+- hosts: localhost
+  gather_facts: false
+  tasks:
+  - name: ksh module test
+    ksh_test:
+      name: batman
+      condition: happy
+    register: ksh_output
+
+  - debug:
+      var: ksh_output
+
