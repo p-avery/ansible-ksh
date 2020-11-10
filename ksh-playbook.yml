@@ -1,7 +1,7 @@
 ---
 - hosts: localhost
   gather_facts: false
-  tasks:
+  tasks
   - name: ksh module test
     ksh_test:
       name: batman
